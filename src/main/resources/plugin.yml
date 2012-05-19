@@ -1,0 +1,6 @@
+name: Dynmap-AdminCmd
+main: org.dynmap.admincmd.DynmapAdminCmdPlugin
+version: "${project.version}"
+author: mikeprimm
+depend: [ dynmap, AdminCmd ]
+
