@@ -34,8 +34,7 @@ import be.Balor.World.WorldManager;
 import be.Balor.bukkit.AdminCmd.AdminCmd;
 
 public class DynmapAdminCmdPlugin extends JavaPlugin {
-    private static final Logger log = Logger.getLogger("Minecraft");
-    private static final String LOG_PREFIX = "[Dynmap-AdminCmd] ";
+    private static Logger log;
 
     Plugin dynmap;
     DynmapAPI api;
@@ -46,6 +45,11 @@ public class DynmapAdminCmdPlugin extends JavaPlugin {
     
     FileConfiguration cfg;
 
+    @Override
+    public void onLoad() {
+        log = this.getLogger();
+    }
+    
     private class OurPlayerListener implements Listener, Runnable {
         @SuppressWarnings("unused")
         @EventHandler(priority=EventPriority.MONITOR)
@@ -224,10 +228,10 @@ public class DynmapAdminCmdPlugin extends JavaPlugin {
     boolean stop;
     
     public static void info(String msg) {
-        log.log(Level.INFO, LOG_PREFIX + msg);
+        log.log(Level.INFO, msg);
     }
     public static void severe(String msg) {
-        log.log(Level.SEVERE, LOG_PREFIX + msg);
+        log.log(Level.SEVERE, msg);
     }
 
     private class MarkerUpdate implements Runnable {
